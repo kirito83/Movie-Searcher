@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 align="center">Résultats</h1> 
+    <br>
+    <div align="center"><%= link_to 'Nouvelle recherche', root_path, class: 'btn btn-primary'%></div>
+  </div>
+</div> </br>
+
+
+<% if !(@movies.nil?) %>
+<% if (@movies.empty?) %>
+   <div class="container">
+        <div class="bg-danger">
+            <h2> Aucun film ne correspond à votre recherche</h2>
+      </div>
+    </div> 
+
+<% else %>
+    <% @movies.each do |movie| %>
+ 
+        <div class="row z-depth-3">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2">
+                    <% if !(movie.image_url=="#") %>
+                        <%= image_tag movie.image_url %>
+                    <% end %>
+                </div>
+                <div class="col-sm-6">
+                  <ul>
+                    <li><strong>Titre: </strong><%= movie.title %></li>
+                    <br>
+                    <br>
+                    <li><strong>Date de sortie: </strong><%= movie.release_date %></li>
+                    <br>
+                    <br>
+                    <li><strong>Réalisation: </strong><%= movie.director %></li>
+                  </ul>
+                </div>
+                <div class="col-sm-2"></div>
+        </div>
+    </br>
+    <% end %>
+<% end %>
+<% end %>
